@@ -1,0 +1,342 @@
+.pagina-formulario,
+.painel-admin {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 50px 20px;
+}
+
+.formulario-box {
+    width: min(680px, 100%);
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    padding: 35px;
+    text-align: left;
+}
+
+.formulario-box h2,
+.topo-lista h2 {
+    color: #ff9696;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.texto-apoio {
+    color: #555;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.pagamento-pix {
+    background: #fffafa;
+    border: 1px solid #f0d4d4;
+    border-radius: 12px;
+    margin-bottom: 28px;
+    padding: 24px;
+}
+
+.pagamento-pix h3 {
+    color: #ff9696;
+    font-size: 21px;
+    margin-bottom: 4px;
+    text-align: center;
+}
+
+.pagamento-pix > p {
+    color: #555;
+    font-size: 15px;
+    margin-bottom: 18px;
+    text-align: center;
+}
+
+.pagamento-pix .aviso-sinal {
+    color: #5d3b49;
+    font-size: 16px;
+    margin: 10px auto 20px;
+    max-width: 390px;
+}
+
+.pix-conteudo {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.qr-code-pix {
+    background: #fff;
+    border: 2px solid #e8b9b9;
+    border-radius: 10px;
+    display: block;
+    max-width: 260px;
+    padding: 8px;
+    width: 100%;
+}
+
+.instrucao-qr {
+    color: #777;
+    font-size: 14px;
+    margin: 0;
+    text-align: center;
+}
+
+form {
+    display: grid;
+    gap: 12px;
+}
+
+label {
+    color: #444;
+    font-weight: 700;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    border: 1px solid #e5d7dc;
+    border-radius: 8px;
+    font: inherit;
+    padding: 12px;
+    background: #fffafa;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.botao-principal,
+.botao-secundario,
+.botao-whatsapp,
+.botao-pago,
+.botao-confirmar {
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    padding: 12px 16px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.botao-principal {
+    background: #ffa9a9;
+    color: #fff;
+    margin-top: 10px;
+}
+
+.botao-principal:hover,
+.botao-pago:hover,
+.botao-confirmar:hover {
+    background: #ff9696;
+}
+
+.botao-secundario {
+    background: #fff;
+    border: 1px solid #ffa9a9;
+    color: #ff8c8c;
+}
+
+.mensagem-sucesso {
+    color: #2f8f5b;
+    font-weight: 700;
+    min-height: 24px;
+    text-align: center;
+}
+
+.resumo-painel {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin-bottom: 35px;
+}
+
+.resumo-painel div {
+    background: #fff;
+    border-left: 6px solid #ffa9a9;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+    padding: 20px;
+}
+
+.resumo-painel strong {
+    color: #ff9696;
+    display: block;
+    font-size: 34px;
+    line-height: 1;
+}
+
+.resumo-painel span {
+    color: #555;
+}
+
+.topo-lista {
+    align-items: center;
+    display: flex;
+    gap: 18px;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+
+.lista-inscricoes {
+    display: grid;
+    gap: 18px;
+}
+
+.card-inscricao {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+    display: grid;
+    gap: 16px;
+    grid-template-columns: 1fr 220px;
+    padding: 22px;
+}
+
+.card-inscricao h3 {
+    color: #ff9696;
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.card-inscricao p {
+    color: #444;
+    margin-bottom: 6px;
+}
+
+.status {
+    border-radius: 999px;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    padding: 6px 12px;
+}
+
+.status-aguardando {
+    background: #fff1d6;
+    color: #8a5a00;
+}
+
+.status-pago {
+    background: #e3f8eb;
+    color: #237047;
+}
+
+.status-confirmado {
+    background: #e9edff;
+    color: #4050a8;
+}
+
+.comprovante {
+    align-self: start;
+    border: 1px solid #f0d4d4;
+    border-radius: 10px;
+    max-height: 250px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.sem-comprovante {
+    align-items: center;
+    background: #fffafa;
+    border: 1px dashed #e8b9b9;
+    border-radius: 10px;
+    color: #777;
+    display: flex;
+    min-height: 160px;
+    padding: 18px;
+    text-align: center;
+}
+
+.acoes-inscricao {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.botao-pago,
+.botao-confirmar {
+    background: #ffa9a9;
+    color: #fff;
+}
+
+.botao-whatsapp {
+    background: #25d366;
+    color: #fff;
+}
+
+.vazio {
+    background: #fff;
+    border-radius: 12px;
+    color: #555;
+    padding: 30px;
+    text-align: center;
+}
+
+@media (max-width: 760px) {
+    .pagina-formulario,
+    .painel-admin {
+        padding: 36px 16px;
+    }
+
+    .formulario-box {
+        padding: 24px 18px;
+    }
+
+    .qr-code-pix {
+        max-width: 230px;
+    }
+
+    .resumo-painel,
+    .card-inscricao {
+        grid-template-columns: 1fr;
+    }
+
+    .topo-lista {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .acoes-inscricao {
+        flex-direction: column;
+    }
+
+    .botao-principal,
+    .botao-secundario,
+    .botao-whatsapp,
+    .botao-pago,
+    .botao-confirmar {
+        width: 100%;
+    }
+}
+
+@media (max-width: 420px) {
+    .pagina-formulario,
+    .painel-admin {
+        padding: 24px 14px;
+    }
+
+    .formulario-box {
+        border-radius: 10px;
+        padding: 20px 14px;
+    }
+
+    .pagamento-pix {
+        padding: 18px 14px;
+    }
+
+    input,
+    select,
+    textarea {
+        padding: 11px;
+    }
+
+    .card-inscricao,
+    .resumo-painel div,
+    .vazio {
+        padding: 16px;
+    }
+}

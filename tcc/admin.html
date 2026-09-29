@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo - Método Débora Silva</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="painel.css">
+</head>
+
+<body>
+    <header>
+        <h1>Painel Administrativo</h1>
+        <p>Inscrições, dúvidas e pagamentos recebidos</p>
+    </header>
+
+    <nav class="inicio">
+        <a href="pagina1.html">Início</a>
+        <a href="cursos.html">Cursos</a>
+        <a href="inscricao.html">Inscrição</a>
+        <a href="admin.html">Painel</a>
+    </nav>
+
+    <main class="painel-admin">
+        <section class="resumo-painel">
+            <div>
+                <strong id="totalInscricoes">0</strong>
+                <span>inscrições</span>
+            </div>
+            <div>
+                <strong id="totalPagas">0</strong>
+                <span>pagas</span>
+            </div>
+            <div>
+                <strong id="totalConfirmadas">0</strong>
+                <span>confirmadas</span>
+            </div>
+        </section>
+
+        <section>
+            <div class="topo-lista">
+                <h2>Inscrições recebidas</h2>
+                <button type="button" id="limparInscricoes" class="botao-secundario">Limpar painel</button>
+            </div>
+
+            <div id="listaInscricoes" class="lista-inscricoes"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 - MDS (Método Débora Silva)</p>
+    </footer>
+
+    <script src="admin.js"></script>
+</body>
+
+</html>

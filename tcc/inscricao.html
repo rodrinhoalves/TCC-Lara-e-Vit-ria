@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscrição - Método Débora Silva</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="painel.css">
+</head>
+
+<body>
+    <header>
+        <h1>Débora Silva</h1>
+        <p>Nail design e instrutora</p>
+    </header>
+
+    <nav class="inicio">
+        <a href="pagina1.html">Início</a>
+        <a href="cursos.html">Cursos</a>
+    </nav>
+
+    <main class="pagina-formulario">
+        <section class="formulario-box">
+            <h2>Inscrição no curso</h2>
+            <p class="texto-apoio">Preencha os dados abaixo para enviar sua dúvida, comprovante ou solicitação de matrícula.</p>
+
+            <section class="pagamento-pix" aria-labelledby="titulo-pix">
+                <h3 id="titulo-pix">Pagamento via PIX</h3>
+                <p class="aviso-sinal">Envie o sinal de <strong>R$ 200,00</strong> para agendar seu horário.</p>
+
+                <div class="pix-conteudo">
+                    <img class="qr-code-pix" src="imagens/qr-code-pix.jpeg" alt="QR Code PIX para pagamento do sinal">
+                    <p class="instrucao-qr">Aponte a câmera do seu celular para o QR Code e conclua o pagamento.</p>
+                </div> 
+            </section>
+
+            <form id="formInscricao">
+                <label for="nome">Nome completo</label>
+                <input type="text" id="nome" required placeholder="Digite seu nome">
+
+                <label for="whatsapp">WhatsApp</label>
+                <input type="tel" id="whatsapp" required placeholder="Ex: 48999999999">
+
+                <label for="curso">Curso desejado</label>
+                <select id="curso" required>
+                    <option value="">Selecione o curso</option>
+                    <option value="Formatos & Naturalidade">Formatos & Naturalidade</option>
+                    <option value="Formatos & NailArt">Formatos & NailArt</option>
+                </select>
+
+                <label for="duvida">Dúvida ou observação</label>
+                <textarea id="duvida" rows="4" placeholder="Escreva sua dúvida ou observação"></textarea>
+
+                <label for="comprovante">Imagem do comprovante ou QR Code pago</label>
+                <input type="file" id="comprovante" accept="image/*">
+
+                <button type="submit" class="botao-principal">Enviar inscrição</button>
+                <p id="mensagemFormulario" class="mensagem-sucesso"></p>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 - MDS (Método Débora Silva)</p>
+    </footer>
+
+    <script src="inscricao.js"></script>
+</body>
+
+</html>
