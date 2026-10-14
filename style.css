@@ -1,0 +1,591 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+}
+
+body {
+    width: 100%;
+    overflow-x: hidden;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #F7F5F6;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+body,
+button,
+input,
+select,
+textarea {
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+main,
+section,
+.conteudo,
+.info-cursos,
+.faq-cursos,
+.pagina-formulario,
+.painel-admin {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+header {
+    background:#ffa9a9;
+    color: #fff;
+    text-align: center;
+    padding: 30px 20px;
+    
+}
+
+.inicio {
+    background: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    justify-content: center;
+    padding: 15px;
+    position: sticky;
+    text-align: center;
+    top: 0;
+    z-index: 1000;
+}
+
+.inicio a {
+    color: #ffa9a9;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+    padding: 4px 0;
+}
+
+.inicio a:focus-visible,
+.botao-card:focus-visible,
+.icone-link:focus-visible,
+.social-btn:focus-visible {
+    outline: 3px solid #f3c2c2;
+    outline-offset: 3px;
+}
+
+
+.banner {
+    width: 100%;
+    margin: 0;
+    padding: 0 ; 
+    line-height: 0; 
+}
+
+.img-banner {
+    width: 100%;         
+    height: auto;          
+    display: block;        
+    object-fit: cover;     
+}
+
+section {
+    padding: clamp(40px, 6vw, 60px) 20px;
+    text-align: center;
+}
+
+/* títulos gerais */
+#cursos h2,
+#resultados h2,
+.quem {
+    width: 100%;
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #ffa9a9;
+    text-align: center;
+}
+
+/* títulos dos cards */
+.card h3{
+    margin-bottom: 15px;
+    font-size: 22px;
+    color: #ffa9a9;
+    text-align: center;
+}
+
+.deborafoto {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap; 
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    text-align: left;
+    width: 100%;
+}
+
+.deborafoto > div {
+    flex: 1;
+    min-width: 300px;
+    text-align: center;
+}
+
+.debora {
+    width: 100%; 
+    max-width: 400px; 
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 10px 10px 0 #ffa9a9;
+}
+
+.textosobre {
+    flex: 1;
+    min-width: 300px;
+    font-size: 18px; 
+    color: #444;
+}
+
+.quem {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #ffa9a9;
+    text-align: center;
+}
+
+
+.carrossel {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+}
+
+
+
+.grid {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: #fff;
+    width: min(300px, 100%);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+    min-width: 0;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    cursor: pointer;
+}
+
+.card img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.card h3 a {
+    color: #ffa9a9 ;
+    text-decoration: none;
+}
+
+.acoes-card {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 12px;
+   
+
+}
+
+.botao-card {
+    display: inline-block;
+    width: auto;
+    padding: 10px 16px;
+    background: #ffa9a9;
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+  
+}
+
+.botao-card:hover {
+    background: #ff9696;
+}
+
+.icone-link {
+    align-items: center;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+    display: inline-flex;
+    height: 42px;
+    justify-content: center;
+    text-decoration: none;
+    width: 42px;
+}
+
+.icone-link img,
+.social-icon img {
+    filter: none;
+    height: 28px;
+    margin-bottom: 0;
+    border-radius: 0;
+    width: 28px;
+}
+
+.sobre-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(160px, 1fr));
+    gap: 15px;
+    text-align: left;
+}
+
+.sobre-grid article,
+.info-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    padding: 20px;
+}
+
+.sobre-grid h3,
+.info-card h3 {
+    color: #ff9696;
+    font-size: 22px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.sobre-grid p,
+.info-card p {
+    color: #444;
+    font-size: 16px;
+}
+
+.social-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 22px;
+}
+
+.social-btn {
+    align-items: center;
+    border-radius: 999px;
+    color: #fff;
+    display: inline-flex;
+    font-weight: 700;
+    gap: 8px;
+    justify-content: center;
+    min-width: 145px;
+    padding: 11px 16px;
+    text-decoration: none;
+}
+
+.social-icon {
+    align-items: center;
+    background: #fff;
+    border-radius: 50%;
+    display: inline-flex;
+    height: 34px;
+    justify-content: center;
+    width: 34px;
+}
+
+.whatsapp {
+    background: #e9fff1;
+    color: #1c8f4d;
+}
+
+.instagram {
+    background: #fff0f7;
+    color: #c13584;
+}
+
+
+
+.carrossel-container {
+    display: flex;
+    width: max-content; 
+    gap: 20px;
+    animation: scrollSlide 25s linear infinite;
+}
+
+
+.carrossel:hover .carrossel-container {
+    animation-play-state: paused;
+    cursor: pointer;
+}
+
+.carrossel-container img {
+    width: clamp(180px, 45vw, 250px);
+    height: clamp(220px, 55vw, 300px);
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+
+.conteudo {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+    font-size: 18px;
+
+}
+
+.info-cursos {
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.faq-cursos {
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.faq-cursos h2 {
+    color: #ffa9a9;
+    font-size: 32px;
+    margin-bottom: 6px;
+}
+
+.faq-intro {
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 760px);
+    justify-content: center;
+    gap: 16px;
+    text-align: left;
+}
+
+.faq-item {
+    align-self: start;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    overflow: hidden;
+}
+
+.faq-item summary {
+    align-items: center;
+    color: #ff9696;
+    cursor: pointer;
+    display: flex;
+    font-size: 17px;
+    font-weight: 700;
+    gap: 12px;
+    justify-content: space-between;
+    list-style: none;
+    padding: 18px 20px;
+}
+
+.faq-item summary:focus-visible {
+    outline: 3px solid #f3c2c2;
+    outline-offset: -3px;
+}
+
+.faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-item summary::after {
+    content: '+';
+    flex: 0 0 auto;
+    font-size: 25px;
+    font-weight: 400;
+    line-height: 1;
+}
+
+.faq-item[open] summary::after {
+    content: "−";
+}
+
+.faq-item p {
+    border-top: 1px solid #f3e4e4;
+    color: #444;
+    padding: 16px 20px 20px;
+}
+
+.info-cursos h2 {
+    color: #ffa9a9;
+    font-size: 32px;
+    margin-bottom: 25px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    text-align: left;
+}
+
+.destaque-info {
+    border-left: 6px solid #ffa9a9;
+}
+
+.contato-info {
+    background: #fff7f7;
+}
+
+@media (max-width: 900px) {
+    .sobre-grid,
+    .info-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 640px) {
+    header {
+        padding: 24px 16px;
+    }
+
+    header h1 {
+        font-size: 28px;
+    }
+
+    .inicio {
+        gap: 4px 12px;
+        padding: 10px 12px;
+    }
+
+    .inicio a {
+        font-size: 12px;
+    }
+
+    #cursos h2,
+    #resultados h2,
+    .quem,
+    .info-cursos h2,
+    .faq-cursos h2 {
+        font-size: 26px;
+    }
+
+    .grid {
+        gap: 18px;
+    }
+
+    .card {
+        padding: 16px;
+    }
+
+    .card h3 {
+        font-size: 20px;
+    }
+
+    .deborafoto {
+        gap: 24px;
+        padding: 42px 18px;
+        text-align: center;
+    }
+
+    .deborafoto > div,
+    .textosobre {
+        min-width: 0;
+    }
+
+    .textosobre {
+        font-size: 16px;
+    }
+
+    .debora {
+        max-width: 320px;
+        box-shadow: 7px 7px 0 #ffa9a9;
+    }
+
+    .sobre-grid,
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .social-links {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .faq-item summary,
+    .faq-item p {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    footer {
+        margin-top: 0;
+        padding: 20px 16px;
+    }
+}
+
+@media (max-width: 380px) {
+    header h1 {
+        font-size: 25px;
+    }
+
+    .inicio {
+        gap: 4px 10px;
+    }
+
+    .inicio a {
+        font-size: 11px;
+    }
+
+    section {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .botao-card {
+        width: 100%;
+    }
+
+    .icone-link {
+        height: 40px;
+        width: 40px;
+    }
+
+    .social-btn {
+        min-width: 0;
+    }
+
+    .carrossel-container img {
+        width: 170px;
+        height: 215px;
+    }
+}
+
+@keyframes scrollSlide {
+    from { transform: translateX(0); }
+    to { transform: translateX(calc(-50% - 10px)); } 
+}
+
+footer {
+    background: #ffa9a9 ;
+    color: #fff;
+    text-align: center;
+    padding: 25px;
+    margin-top: 20px;
+}
