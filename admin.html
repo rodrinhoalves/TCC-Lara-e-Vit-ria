@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo - Método Débora Silva</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="painel.css">
+</head>
+
+<body>
+    <header>
+        <h1>Painel Administrativo</h1>
+        <p>Inscrições, dúvidas e pagamentos recebidos</p>
+    </header>
+
+    <nav class="inicio">
+        <a href="pagina1.html">Início</a>
+        <a href="cursos.html">Cursos</a>
+        <a href="inscricao.html">Inscrição</a>
+        <a href="admin.html">Painel</a>
+    </nav>
+
+    <main class="painel-admin">
+        <section id="loginAdmin" class="login-admin">
+            <h2>Acesso da administradora</h2>
+            <form id="formLoginAdmin">
+                <label for="emailAdmin">E-mail</label>
+                <input type="email" id="emailAdmin" autocomplete="username" required>
+                <label for="senhaAdmin">Senha</label>
+                <input type="password" id="senhaAdmin" autocomplete="current-password" required>
+                <button type="submit" id="botaoLoginAdmin" class="botao-principal">Entrar</button>
+                <p id="mensagemLoginAdmin" class="mensagem-painel" role="status" aria-live="polite"></p>
+            </form>
+        </section>
+
+        <section id="conteudoAdmin" hidden>
+            <div class="topo-lista topo-sessao">
+                <span id="identidadeAdmin"></span>
+                <button type="button" id="sairAdmin" class="botao-secundario">Sair</button>
+            </div>
+
+            <section class="resumo-painel">
+            <div>
+                <strong id="totalInscricoes">0</strong>
+                <span>inscrições</span>
+            </div>
+            <div>
+                <strong id="totalPagas">0</strong>
+                <span>pagas</span>
+            </div>
+            <div>
+                <strong id="totalConfirmadas">0</strong>
+                <span>confirmadas</span>
+            </div>
+            </section>
+
+            <section>
+                <div class="topo-lista">
+                    <h2>Inscrições recebidas</h2>
+                    <button type="button" id="limparBusca" class="botao-secundario">Atualizar painel</button>
+                </div>
+
+                <div id="listaInscricoes" class="lista-inscricoes"></div>
+            </section>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 - MDS (Método Débora Silva)</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.2"></script>
+    <script src="supabase-config.js"></script>
+    <script src="admin.js"></script>
+</body>
+
+</html>
