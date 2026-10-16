@@ -37,10 +37,10 @@
 
             <form id="formInscricao">
                 <label for="nome">Nome completo</label>
-                <input type="text" id="nome" required placeholder="Digite seu nome">
+                <input type="text" id="nome" required minlength="2" maxlength="120" placeholder="Digite seu nome">
 
                 <label for="whatsapp">WhatsApp</label>
-                <input type="tel" id="whatsapp" required placeholder="Ex: 48999999999">
+                <input type="tel" id="whatsapp" required minlength="8" maxlength="25" pattern="[\d+\(\) \-]{8,25}" placeholder="Ex: 48999999999">
 
                 <label for="curso">Curso desejado</label>
                 <select id="curso" required>
@@ -50,13 +50,13 @@
                 </select>
 
                 <label for="duvida">Dúvida ou observação</label>
-                <textarea id="duvida" rows="4" placeholder="Escreva sua dúvida ou observação"></textarea>
+                <textarea id="duvida" rows="4" maxlength="2000" placeholder="Escreva sua dúvida ou observação"></textarea>
 
                 <label for="comprovante">Imagem do comprovante ou QR Code pago</label>
-                <input type="file" id="comprovante" accept="image/*">
+                <input type="file" id="comprovante" accept="image/jpeg,image/png,image/webp">
 
-                <button type="submit" class="botao-principal">Enviar inscrição</button>
-                <p id="mensagemFormulario" class="mensagem-sucesso"></p>
+                <button type="submit" id="botaoEnviar" class="botao-principal">Enviar inscrição</button>
+                <p id="mensagemFormulario" class="mensagem-sucesso" role="status" aria-live="polite"></p>
             </form>
         </section>
     </main>
@@ -65,7 +65,17 @@
         <p>© 2026 - MDS (Método Débora Silva)</p>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.2"></script>
+    <script src="supabase-config.js"></script>
     <script src="inscricao.js"></script>
+    <nav class="social-flutuante" aria-label="Redes sociais">
+        <a href="https://wa.me/message/LRTMYJL6VMEEK1" target="_blank" rel="noopener noreferrer" aria-label="Fale pelo WhatsApp">
+            <img src="https://img.icons8.com/color/48/whatsapp--v1.png" alt="">
+        </a>
+        <a href="https://www.instagram.com/deborasilvanaills/" target="_blank" rel="noopener noreferrer" aria-label="Acesse o Instagram">
+            <img src="https://img.icons8.com/fluency/48/instagram-new.png" alt="">
+        </a>
+    </nav>
 </body>
 
 </html>

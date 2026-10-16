@@ -145,6 +145,39 @@ textarea {
     text-align: center;
 }
 
+.mensagem-erro,
+.mensagem-painel {
+    color: #a12e3a;
+    font-weight: 700;
+    min-height: 24px;
+    text-align: center;
+}
+
+.login-admin {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    margin: 0 auto 35px;
+    max-width: 520px;
+    padding: 30px;
+}
+
+.login-admin h2 {
+    color: #ff9696;
+    margin-bottom: 18px;
+    text-align: center;
+}
+
+.topo-sessao {
+    justify-content: flex-end;
+    margin-bottom: 22px;
+}
+
+button:disabled {
+    cursor: wait;
+    opacity: 0.65;
+}
+
 .resumo-painel {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));

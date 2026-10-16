@@ -23,7 +23,25 @@
     </nav>
 
     <main class="painel-admin">
-        <section class="resumo-painel">
+        <section id="loginAdmin" class="login-admin">
+            <h2>Acesso da administradora</h2>
+            <form id="formLoginAdmin">
+                <label for="emailAdmin">E-mail</label>
+                <input type="email" id="emailAdmin" autocomplete="username" required>
+                <label for="senhaAdmin">Senha</label>
+                <input type="password" id="senhaAdmin" autocomplete="current-password" required>
+                <button type="submit" id="botaoLoginAdmin" class="botao-principal">Entrar</button>
+                <p id="mensagemLoginAdmin" class="mensagem-painel" role="status" aria-live="polite"></p>
+            </form>
+        </section>
+
+        <section id="conteudoAdmin" hidden>
+            <div class="topo-lista topo-sessao">
+                <span id="identidadeAdmin"></span>
+                <button type="button" id="sairAdmin" class="botao-secundario">Sair</button>
+            </div>
+
+            <section class="resumo-painel">
             <div>
                 <strong id="totalInscricoes">0</strong>
                 <span>inscrições</span>
@@ -36,15 +54,16 @@
                 <strong id="totalConfirmadas">0</strong>
                 <span>confirmadas</span>
             </div>
-        </section>
+            </section>
 
-        <section>
-            <div class="topo-lista">
-                <h2>Inscrições recebidas</h2>
-                <button type="button" id="limparInscricoes" class="botao-secundario">Limpar painel</button>
-            </div>
+            <section>
+                <div class="topo-lista">
+                    <h2>Inscrições recebidas</h2>
+                    <button type="button" id="limparBusca" class="botao-secundario">Atualizar painel</button>
+                </div>
 
-            <div id="listaInscricoes" class="lista-inscricoes"></div>
+                <div id="listaInscricoes" class="lista-inscricoes"></div>
+            </section>
         </section>
     </main>
 
@@ -52,6 +71,8 @@
         <p>© 2026 - MDS (Método Débora Silva)</p>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.2"></script>
+    <script src="supabase-config.js"></script>
     <script src="admin.js"></script>
 </body>
 

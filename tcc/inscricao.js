@@ -1,50 +1,176 @@
-const STORAGE_KEY = "mds_inscricoes";
-
-const form = document.getElementById("formInscricao");
-const mensagemFormulario = document.getElementById("mensagemFormulario");
-
-function buscarInscricoes() {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-}
-
-function salvarInscricoes(inscricoes) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(inscricoes));
-}
-
-function lerImagemComoTexto(arquivo) {
-    return new Promise((resolve) => {
-        if (!arquivo) {
-            resolve("");
-            return;
-        }
-
-        const leitor = new FileReader();
-        leitor.onload = () => resolve(leitor.result);
-        leitor.readAsDataURL(arquivo);
-    });
-}
-
-form.addEventListener("submit", async (evento) => {
-    evento.preventDefault();
-
-    const comprovante = document.getElementById("comprovante").files[0];
-    const imagemComprovante = await lerImagemComoTexto(comprovante);
-
-    const novaInscricao = {
-        id: Date.now(),
-        nome: document.getElementById("nome").value.trim(),
-        whatsapp: document.getElementById("whatsapp").value.trim(),
-        curso: document.getElementById("curso").value,
-        duvida: document.getElementById("duvida").value.trim(),
-        comprovante: imagemComprovante,
-        status: "aguardando",
-        criadaEm: new Date().toLocaleString("pt-BR")
+﻿(function () {
+    const form = document.getElementById("formInscricao");
+    const mensagem = document.getElementById("mensagemFormulario");
+    const botao = document.getElementById("botaoEnviar");
+    const campoArquivo = document.getElementById("comprovante");
+    const mensagemTentativaAntiga = "Ha uma tentativa anterior sem confirmacao. Para evitar duplicidade, restaure os mesmos campos e selecione o mesmo arquivo antes de tentar novamente.";
+    const chaveTentativa = "mds_supabase_tentativa_v1";
+    const chaveAssinatura = "mds_supabase_assinatura_v1";
+    const tipos = {
+        "image/jpeg": { extensao: "jpg", bytes: [0xff, 0xd8, 0xff] },
+        "image/png": { extensao: "png", bytes: [0x89, 0x50, 0x4e, 0x47] },
+        "image/webp": { extensao: "webp", bytes: [0x52, 0x49, 0x46, 0x46] }
     };
+    const limiteBytes = 5000000;
+    let supabaseClient = null;
 
-    const inscricoes = buscarInscricoes();
-    inscricoes.unshift(novaInscricao);
-    salvarInscricoes(inscricoes);
+    function mostrar(texto, erro) {
+        mensagem.textContent = texto;
+        mensagem.classList.toggle("mensagem-erro", Boolean(erro));
+        const botaoDescartar = document.getElementById("descartarTentativa");
+        if (botaoDescartar) botaoDescartar.remove();
+        if (erro && texto === mensagemTentativaAntiga) {
+            const acao = document.createElement("button");
+            acao.id = "descartarTentativa";
+            acao.type = "button";
+            acao.className = "botao-secundario";
+            acao.textContent = "Descartar tentativa antiga e tentar novamente";
+            acao.addEventListener("click", function () {
+                localStorage.removeItem(chaveTentativa);
+                localStorage.removeItem(chaveAssinatura);
+                mostrar("Tentativa antiga removida. Confira os dados e envie novamente.", false);
+            });
+            mensagem.insertAdjacentElement("afterend", acao);
+        }
+    }
 
-    form.reset();
-    mensagemFormulario.textContent = "Inscrição enviada com sucesso!";
-});
+    function configurarCliente() {
+        if (!window.supabase || !window.SUPABASE_URL || !window.SUPABASE_PUBLIC_KEY ||
+            window.SUPABASE_URL.indexOf("COLE_AQUI") !== -1 ||
+            window.SUPABASE_PUBLIC_KEY.indexOf("COLE_AQUI") !== -1) {
+            mostrar("Conexao ainda nao configurada. Preencha URL e chave publica em supabase-config.js.", true);
+            return false;
+        }
+        supabaseClient = window.supabase.createClient(window.SUPABASE_URL, window.SUPABASE_PUBLIC_KEY);
+        return true;
+    }
+
+    async function validarComprovante(arquivo) {
+        if (!arquivo) return null;
+        const tipo = tipos[arquivo.type];
+        if (!tipo) throw new Error("Envie somente comprovantes JPG, PNG ou WEBP.");
+        if (arquivo.size > limiteBytes) throw new Error("O comprovante deve ter no maximo 5 MB.");
+        const inicio = new Uint8Array(await arquivo.slice(0, 12).arrayBuffer());
+        const assinaturaCorreta = tipo.bytes.every(function (byte, indice) {
+            return inicio[indice] === byte;
+        });
+        if (!assinaturaCorreta || (arquivo.type === "image/webp" &&
+            String.fromCharCode.apply(null, Array.from(inicio.slice(8, 12))) !== "WEBP")) {
+            throw new Error("O conteudo do arquivo nao corresponde a um JPG, PNG ou WEBP valido.");
+        }
+        return tipo;
+    }
+
+    async function assinaturaEnvio(dados, arquivo) {
+        const arquivoInfo = arquivo ? {
+            nome: arquivo.name,
+            tamanho: arquivo.size,
+            alterado: arquivo.lastModified,
+            sha256: Array.from(new Uint8Array(await crypto.subtle.digest("SHA-256", await arquivo.arrayBuffer())))
+                .map(function (b) { return b.toString(16).padStart(2, "0"); }).join("")
+        } : null;
+        const bytes = new TextEncoder().encode(JSON.stringify({ dados: dados, arquivo: arquivoInfo }));
+        const hash = await crypto.subtle.digest("SHA-256", bytes);
+        return Array.from(new Uint8Array(hash)).map(function (b) {
+            return b.toString(16).padStart(2, "0");
+        }).join("");
+    }
+
+    function dadosFormulario() {
+        return {
+            nome: document.getElementById("nome").value.trim(),
+            whatsapp: document.getElementById("whatsapp").value.trim(),
+            curso: document.getElementById("curso").value,
+            duvida: document.getElementById("duvida").value.trim()
+        };
+    }
+
+    function erroDeDuplicidade(erro) {
+        return erro && (String(erro.statusCode) === "409" ||
+            /already exists|duplicate/i.test(erro.message || ""));
+    }
+
+    function mensagemErroEnvio(erro) {
+        if (erro && erro.message && erro.message.indexOf("Ha uma tentativa anterior") === 0) {
+            return mensagemTentativaAntiga;
+        }
+        if (erro && erro.message && (/^Envie somente|^O comprovante|^O conteudo/.test(erro.message))) {
+            return erro.message;
+        }
+        if (erro && (erro.code === "PGRST202" || erro.code === "42883")) {
+            return "O Supabase ainda nao tem a funcao de inscricao. Execute o arquivo schema.sql no SQL Editor do projeto e tente novamente.";
+        }
+        if (erro && (erro.status === 401 || erro.status === 403 || erro.code === "42501")) {
+            return "O Supabase recusou o envio. Confira se as politicas do arquivo schema.sql foram aplicadas no projeto.";
+        }
+        return "Nao foi possivel confirmar o envio. Seus dados continuam no formulario; verifique a conexao e tente novamente.";
+    }
+
+    form.addEventListener("submit", async function (evento) {
+        evento.preventDefault();
+        mostrar("", false);
+        if (!form.reportValidity()) return;
+        if (!configurarCliente()) return;
+
+        const arquivo = campoArquivo.files[0] || null;
+        let dados;
+        let assinatura;
+        let tentativa;
+
+        botao.disabled = true;
+        botao.textContent = "Validando...";
+        try {
+            const tipo = await validarComprovante(arquivo);
+            dados = dadosFormulario();
+            assinatura = await assinaturaEnvio(dados, arquivo);
+            tentativa = localStorage.getItem(chaveTentativa);
+            const assinaturaPendente = localStorage.getItem(chaveAssinatura);
+
+            if (tentativa && assinaturaPendente && assinaturaPendente !== assinatura) {
+                throw new Error(mensagemTentativaAntiga);
+            }
+            if (!tentativa) {
+                tentativa = crypto.randomUUID();
+                localStorage.setItem(chaveAssinatura, assinatura);
+                localStorage.setItem(chaveTentativa, tentativa);
+            }
+
+            botao.textContent = "Enviando...";
+            if (arquivo && tipo) {
+                const caminho = tentativa + "/comprovante." + tipo.extensao;
+                const { error: erroUpload } = await supabaseClient.storage
+                    .from("comprovantes")
+                    .upload(caminho, arquivo, { contentType: arquivo.type, upsert: false });
+                if (erroUpload && !erroDeDuplicidade(erroUpload)) throw erroUpload;
+            }
+
+            const caminhoComprovante = arquivo && tipo
+                ? tentativa + "/comprovante." + tipo.extensao
+                : null;
+            const { error: erroBanco } = await supabaseClient.rpc("enviar_inscricao", {
+                p_id: tentativa,
+                p_nome: dados.nome,
+                p_whatsapp: dados.whatsapp,
+                p_curso: dados.curso,
+                p_duvida: dados.duvida,
+                p_comprovante_path: caminhoComprovante
+            });
+            if (erroBanco) throw erroBanco;
+
+            try {
+                localStorage.removeItem(chaveTentativa);
+                localStorage.removeItem(chaveAssinatura);
+            } catch (erroLimpeza) {
+                console.warn("A inscricao foi gravada, mas nao foi possivel limpar a chave temporaria da sessao.");
+            }
+            form.reset();
+            mostrar("Inscricao enviada com sucesso!", false);
+        } catch (erro) {
+            console.error("Falha ao enviar inscricao:", erro && erro.code ? erro.code : erro);
+            mostrar(mensagemErroEnvio(erro), true);
+        } finally {
+            botao.disabled = false;
+            botao.textContent = "Enviar inscricao";
+        }
+    });
+})();

@@ -589,3 +589,160 @@ footer {
     padding: 25px;
     margin-top: 20px;
 }
+
+
+/* Atalhos fixos para contato nas p?ginas p?blicas */
+.social-flutuante {
+    position: fixed;
+    right: max(18px, env(safe-area-inset-right));
+    bottom: max(18px, env(safe-area-inset-bottom));
+    z-index: 1100;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.social-flutuante a {
+    display: grid;
+    width: 54px;
+    height: 54px;
+    place-items: center;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.22);
+    transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.social-flutuante a:hover {
+    transform: scale(1.08);
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.28);
+}
+
+.social-flutuante a:focus-visible {
+    outline: 3px solid #ffa9a9;
+    outline-offset: 3px;
+}
+
+.social-flutuante img {
+    display: block;
+    width: 34px;
+    height: 34px;
+}
+
+@media (max-width: 480px) {
+    .social-flutuante { right: max(12px, env(safe-area-inset-right)); bottom: max(12px, env(safe-area-inset-bottom)); gap: 10px; }
+    .social-flutuante a { width: 50px; height: 50px; }
+    .social-flutuante img { width: 32px; height: 32px; }
+}
+
+
+/* Se??o de tutoriais */
+.tutoriais {
+    width: 100%;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: clip;
+    background: linear-gradient(180deg, #fff8f8 0%, #f7f5f6 100%);
+    padding: clamp(48px, 7vw, 76px) 20px;
+}
+
+.tutoriais-container {
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.tutoriais-cabecalho {
+    max-width: 680px;
+    margin: 0 auto 32px;
+    text-align: center;
+}
+
+.tutoriais-cabecalho h2 {
+    margin-bottom: 10px;
+    color: #ffa9a9;
+    font-size: clamp(28px, 4vw, 36px);
+}
+
+.tutoriais-cabecalho p {
+    color: #665b5d;
+    font-size: 17px;
+}
+
+.tutoriais-conteudo {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 280px));
+    justify-content: center;
+    justify-items: center;
+    align-items: start;
+    gap: 16px;
+}
+
+.tutorial-item {
+    width: 100%;
+    max-width: 280px;
+    min-width: 0;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 8px 8px 10px;
+    border: 1px solid rgba(255, 169, 169, 0.28);
+    border-radius: 18px;
+    background: #fff;
+    box-shadow: 0 8px 24px rgba(95, 54, 61, 0.08);
+    transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.tutorial-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(95, 54, 61, 0.13);
+}
+
+.tutorial-item .instagram-media {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    border: 0 !important;
+    border-radius: 12px !important;
+    box-shadow: none !important;
+}
+
+.tutorial-item iframe {
+    display: block;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+}
+
+.tutorial-link {
+    display: block;
+    width: fit-content;
+    margin: 12px auto 0;
+    padding: 8px 16px;
+    border-radius: 999px;
+    background: #fff0f2;
+    color: #a94f62;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 160ms ease, color 160ms ease;
+}
+
+.tutorial-link:hover {
+    background: #ffa9a9;
+    color: #fff;
+}
+
+.tutorial-link:focus-visible {
+    outline: 3px solid #ffa9a9;
+    outline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+    .tutoriais { padding-left: 14px; padding-right: 14px; }
+    .tutoriais-cabecalho { margin-bottom: 24px; }
+    .tutoriais-cabecalho p { font-size: 16px; }
+    .tutoriais-conteudo { grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 280px)); gap: 10px; }
+    .tutorial-item { width: 100%; max-width: 280px; margin: 0 auto; padding: 6px; }
+}
