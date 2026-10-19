@@ -1,4 +1,13 @@
 {
+  "redirects": [
+    { "source": "/index.html", "destination": "/tcc/index.html", "permanent": false },
+    { "source": "/pagina1.html", "destination": "/tcc/index.html", "permanent": false },
+    { "source": "/admin.html", "destination": "/tcc/admin.html", "permanent": false },
+    { "source": "/curso1.html", "destination": "/tcc/curso1.html", "permanent": false },
+    { "source": "/curso2.html", "destination": "/tcc/curso2.html", "permanent": false },
+    { "source": "/cursos.html", "destination": "/tcc/cursos.html", "permanent": false },
+    { "source": "/inscricao.html", "destination": "/tcc/inscricao.html", "permanent": false }
+  ],
   "rewrites": [
     {
       "source": "/",
