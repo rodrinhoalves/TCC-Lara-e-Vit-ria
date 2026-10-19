@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/tcc/index.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/tcc/$1"
+    }
+  ]
+}
